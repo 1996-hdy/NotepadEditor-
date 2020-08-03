@@ -1,3 +1,4 @@
+<!DOCTYPE HTML>
 <html>
 <head>
   <title>Notebook</title>
@@ -15,19 +16,19 @@
   <!-- Notebook app -->
   <div id="notebook">
 
-    <!-- Sidebar -->
+    <!-- 左侧 -->
     <aside class="side-bar">
       <div class="toolbar">
-        <button @click="addNote" :title="notes.length + ' note(s) already'"><i class="material-icons">add</i> Add note</button>
+        <button @click="addNote" :title="notes.length + ' note(s) already'"><i class="material-icons">add</i> 添加笔记</button>
       </div>
       <div class="notes">
-        <div class="note" v-for="note of sortedNotes" :class="{selected: note === selectedNote}" @click="selectNote(note)"><i class="icon material-icons" v-if="note.favorite">star</i>{{note.title}}</div>
+        <div class="note" v-for="note of sortedNotes" :class="{selected: note === selectedNote}" @click="selectNote(note)"><i class="icon material-icons" v-if="note.favorite">star</i>笔记{{note.order}}</div>
       </div>
     </aside>
 
     <template v-if="selectedNote">
 
-      <!-- Main pane -->
+      <!-- 主要内容 -->
       <section class="main">
         <div class="toolbar">
           <input v-model="selectedNote.title" placeholder="Note title" />
@@ -39,20 +40,16 @@
         <textarea v-model="selectedNote.content"></textarea>
         <div class="toolbar status-bar">
           <span class="date">
-            <span class="label">Created</span>
+            <span class="label">创建</span>
             <span class="value">{{ selectedNote.created | date }}</span>
           </span>
           <span class="lines">
-            <span class="label">Lines</span>
+            <span class="label">行数</span>
             <span class="value">{{ linesCount }}</span>
           </span>
           <span class="words">
-            <span class="label">Words</span>
+            <span class="label">字数</span>
             <span class="value">{{ wordsCount }}</span>
-          </span>
-          <span class="characters">
-            <span class="label">Characters</span>
-            <span class="value">{{ charactersCount }}</span>
           </span>
         </div>
       </section>
